@@ -3,27 +3,27 @@ export default class Slider {
         this.page = document.querySelector(page);
         this.slides = this.page.children;
         this.btns = document.querySelectorAll(btns);
-        this.slidIndex = 1;
+        this.slideIndex = 1;
     }
 
     showSlides(n) {
         if (n > this.slides.length) {
-            this.slidIndex = 1;
+            this.slideIndex = 1;
         }
 
         if (n < 1) {
-            this.slidIndex = this.slides.length;
+            this.slideIndex = this.slides.length;
         }
 
         this.slides.forEach(slide => {
             slide.style.display = 'none';
         });
 
-        this.slides[this.slidIndex - 1].style.display = 'block';
+        this.slides[this.slideIndex - 1].style.display = 'block';
     }
 
     plusSlides(n) {
-        this.showSlides(this.slidIndex += n);
+        this.showSlides(this.slideIndex += n);
     }
 
     render () {
@@ -34,11 +34,11 @@ export default class Slider {
 
             item.parentNode.previousElementSibling.addEventListener('click', (e) => {
                 e.preventDefault();
-                this.slidIndex = 1;
-                this.showSlides(this.slidIndex);
+                this.slideIndex = 1;
+                this.showSlides(this.slideIndex);
             });
         });
 
-        this.showSlides(this.slidIndex);
+        this.showSlides(this.slideIndex);
     }
 }
