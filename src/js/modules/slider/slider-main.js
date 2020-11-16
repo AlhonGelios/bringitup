@@ -1,8 +1,8 @@
 import Slider from './slider';
 
 export default class MainSlider extends Slider {
-    constructor(btns, moduleNext, modulePrev) {
-        super(btns, moduleNext, modulePrev);
+    constructor(btns, next, prev) {
+        super(btns, next, prev);
     }
 
     showSlides(n) {
@@ -36,7 +36,7 @@ export default class MainSlider extends Slider {
         this.slides[this.slideIndex - 1].style.display = 'block';
     }
 
-    plusSlides(n , trigger = '') {
+    plusSlides(n , trigger = null) {
         try {
             trigger.forEach(item => {
                 item.addEventListener('click', (e) => {
@@ -63,8 +63,8 @@ export default class MainSlider extends Slider {
             });
         });
 
-        this.plusSlides(-1 , this.modulePrev);
-        this.plusSlides(1 , this.moduleNext);
+        this.plusSlides(-1 , this.prev);
+        this.plusSlides(1 , this.next);
 
     }
 

@@ -11,8 +11,8 @@ window.addEventListener('DOMContentLoaded', () => {
     const modulePageSlider = new MainSlider({
         container: '.moduleapp', 
         btns: '.next', 
-        moduleNext: '.nextmodule', 
-        modulePrev: '.prevmodule'
+        next: '.nextmodule', 
+        prev: '.prevmodule'
     });
     modulePageSlider.render();
 
