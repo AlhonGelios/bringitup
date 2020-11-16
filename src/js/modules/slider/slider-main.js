@@ -1,8 +1,8 @@
 import Slider from './slider';
 
 export default class MainSlider extends Slider {
-    constructor(btns) {
-        super(btns);
+    constructor(btns, moduleNext, modulePrev) {
+        super(btns, moduleNext, modulePrev);
     }
 
     showSlides(n) {
@@ -36,7 +36,17 @@ export default class MainSlider extends Slider {
         this.slides[this.slideIndex - 1].style.display = 'block';
     }
 
-    plusSlides(n) {
+    plusSlides(n , trigger = '') {
+        try {
+            trigger.forEach(item => {
+                item.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    e.preventDefault();
+                    this.showSlides(this.slideIndex += n);
+                });
+            });
+        } catch(e) {}
+
         this.showSlides(this.slideIndex += n);
     }
 
@@ -53,21 +63,9 @@ export default class MainSlider extends Slider {
             });
         });
 
-        document.querySelectorAll('.prevmodule').forEach(item => {
-            item.addEventListener('click', (e) => {
-                e.stopPropagation();
-                e.preventDefault();
-                this.plusSlides(-1);
-            });
-        });
+        this.plusSlides(-1 , this.modulePrev);
+        this.plusSlides(1 , this.moduleNext);
 
-        document.querySelectorAll('.nextmodule').forEach(item => {
-            item.addEventListener('click', (e) => {
-                e.stopPropagation();
-                e.preventDefault();
-                this.plusSlides(1);
-            });
-        });
     }
 
     render () {
